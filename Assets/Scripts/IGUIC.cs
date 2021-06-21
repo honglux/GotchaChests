@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// UI controller in InGameScene;
@@ -17,6 +18,7 @@ public class IGUIC : MonoBehaviour
     [SerializeField] private Button play_button;
     [SerializeField] private Button Deno_decre_button;  //Denomination decrease button;
     [SerializeField] private Button Deno_incre_button;  //Denomination increase button;
+    [SerializeField] private GameObject helptext_group;    //Help button;
 
 
     private void Awake()
@@ -140,6 +142,11 @@ public class IGUIC : MonoBehaviour
     public void Update_CD_RO(float curr_deno)
     {
         curr_deno_ROG.Update_number(curr_deno, use_ani: false);
+    }
+
+    public void Toggle_help_text(bool onoff)
+    {
+        helptext_group.SetActive(onoff);
     }
 
     #endregion

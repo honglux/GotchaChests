@@ -15,6 +15,7 @@ public class IGGM : MonoBehaviour
     public const int Invalid_chest_id = -1; //Default invalid chest id;
     public const int Deno_button_soundi = 1;    //Sound clip index for the denomination button;
     public const int Play_button_soundi = 0;    //Sound clip index for the play button;
+    public const float AddBull_amount = 10.0f;
 
     [SerializeField] private AudioClip[] button_clips;  //Audio clips for buttons;
     [SerializeField] private AudioSource button_AS; //Audio source for buttons;
@@ -37,6 +38,7 @@ public class IGGM : MonoBehaviour
     private float[] chest_ani_tier_arr; //Used for chest animation change tier;
     private IEnumerator closeallchest_ani_coro; //Coroutine for close all chests animation;
     private int transition_finished_cnt;    //transition count of finish state; till 9 for example;
+    private bool help_active;   //The active state of the help group;
 
     private void Awake()
     {
@@ -58,6 +60,7 @@ public class IGGM : MonoBehaviour
         chest_ani_tier_arr = new float[0];
         closeallchest_ani_coro = null;
         transition_finished_cnt = 0;
+        help_active = false;
     }
 
     // Start is called before the first frame update
@@ -520,6 +523,18 @@ public class IGGM : MonoBehaviour
     public void Update_cur_win(float amount)
     {
         IGUIC.IS.Update_LW_RO(curr_win);
+    }
+
+    public void Help_button()
+    {
+        help_active = !help_active;
+        IGUIC.IS.Toggle_help_text(help_active);
+    }
+
+    public void AddBill_button()
+    {
+        curr_balance += AddBull_amount;
+        IGUIC.IS.Update_CB_RO(curr_balance);
     }
 
     #endregion
